@@ -3,6 +3,9 @@
 	     '("melpa" . "http://melpa.org/packages/")
 	     t)
 
+
+(require 'company-irony-c-headers)
+
 ;; =============
 ;; irony-mode
 ;; =============
@@ -13,17 +16,24 @@
 ;; =============
 (add-hook 'c++-mode-hook 'company-mode)
 (add-hook 'c-mode-hook 'company-mode)
+(add-to-list 'company-backends 'company-c-headers)
+
 ;; replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
 (defun my-irony-mode-hook ()
 (define-key irony-mode-map [remap completion-at-point]
   'irony-completion-at-point-async)
+
 (define-key irony-mode-map [remap complete-symbol]
   'irony-completion-at-point-async))
+
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
 (eval-after-load 'company
-'(add-to-list 'company-backends 'company-irony))
+  '(add-to-list 'company-backends 'company-irony))
+   
 ;; (optional) adds CC special commands to `company-begin-commands' in order to
 ;; trigger completion at interesting places, such as after scope operator
 ;;     std::|
@@ -94,10 +104,10 @@
 			    (?\" . ?\")
 			    (?\{ . ?\})
 			    ))
-(shown-paren-mode 1) ;; parentheses are highlighted
+;(shown-paren-mode 1) ;; parentheses are highlighted
 
 (column-number-mode 1) ;; shows (row, col) for cursor
-(set make-backup-file nil) ;; don't make backup file
+;(set make-backup-file nil) ;; don't make backup file
 
 ;; enable to open recent files. Good for projects
 (recentf-mode 1) ;;
@@ -107,5 +117,5 @@
 (tabbar-mode t)
 
 ;; highlight cursor line
-(global-hl-line-mode t)
+(global-hl-line-mode nil)
 

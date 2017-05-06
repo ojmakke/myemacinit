@@ -4,7 +4,7 @@
 	     t)
 
 
-(require 'company-irony-c-headers)
+;;(require 'company-irony-c-headers)
 
 ;; =============
 ;; irony-mode
@@ -16,9 +16,8 @@
 ;; =============
 (add-hook 'c++-mode-hook 'company-mode)
 (add-hook 'c-mode-hook 'company-mode)
-(add-to-list 'company-backends 'company-c-headers)
 
-;; replace the `completion-at-point' and `complete-symbol' bindings in
+;; Replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
 (defun my-irony-mode-hook ()
 (define-key irony-mode-map [remap completion-at-point]
@@ -32,7 +31,7 @@
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 (eval-after-load 'company
-  '(add-to-list 'company-backends 'company-irony))
+  '(add-to-list 'company-backends 'company-irony 'company-c-headers))
    
 ;; (optional) adds CC special commands to `company-begin-commands' in order to
 ;; trigger completion at interesting places, such as after scope operator
@@ -114,8 +113,8 @@
 (global-set-key (kbd "C-c C-o") 'recentf-open-files)
 
 ;; must install tabbar for this
-(tabbar-mode t)
+;;(tabbar-mode t)
 
 ;; highlight cursor line
-(global-hl-line-mode nil)
+;;(global-hl-line-mode nil)
 

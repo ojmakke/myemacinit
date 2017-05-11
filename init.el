@@ -3,15 +3,37 @@
 	     '("melpa" . "http://melpa.org/packages/")
 	     t)
 
+(require 'cedet)
+(require 'eieio)
+(require 'eieio-speedbar)
+(require 'eieio-opt)
+(require 'eieio-base)
+(require 'ede/source)
+(require 'ede/base)
+(require 'ede/auto)
+(require 'ede/proj)
+(require 'ede/proj-archive)
+(require 'ede/proj-aux)
+(require 'ede/proj-comp)
+(require 'ede/proj-elisp)
+(require 'ede/proj-info)
+(require 'ede/proj-misc)
+(require 'ede/proj-obj)
+(require 'ede/proj-prog)
+(require 'ede/proj-scheme)
+(require 'ede/proj-shared)
+
+
+
+
 (global-ede-mode 1)
 (require 'semantic/db)
+(semantic-add-system-include "/usr/include/gtk-3.0/" 'c-mode)
 (semantic-mode 1)
 (global-semantic-idle-completions-mode)
-(global-set-key (kbd "TAB") 'semantic-ia-complete-tip)
-(global-set-key [C-tab] 'semantic-ia-complete-symbol)
+(global-set-key (kbd "<C-tab>") 'semantic-ia-complete-tip)
+(global-set-key (kbd "C-S-q") 'semantic-ia-complete-symbol)
 (semantic-speedbar-analysis)
-
-
 
 (load-theme 'wombat t)
 
@@ -54,4 +76,3 @@
 
 ;; highlight cursor line
 ;;(global-hl-line-mode nil)
-
